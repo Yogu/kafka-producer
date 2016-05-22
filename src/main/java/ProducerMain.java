@@ -21,12 +21,13 @@ public class ProducerMain {
 		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
 		Producer<String, String> producer = new KafkaProducer<>(props);
+		int i = 0;
 		while (true) {
 			producer.send(new ProducerRecord<String, String>("test", Integer.toString(i),
 					Integer.toString(i)));
 			Thread.sleep(100);
+			i++;
 		}
 
-		producer.close();
 	}
 }
