@@ -25,7 +25,6 @@ public class ProducerMain {
 		while (true) {
 			producer.send(new ProducerRecord<String, String>("test", Integer.toString(i),
 					Integer.toString(i)));
-			Thread.sleep(100);
 			i++;
 		}
 
