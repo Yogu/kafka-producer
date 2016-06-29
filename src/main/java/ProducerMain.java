@@ -20,10 +20,12 @@ public class ProducerMain {
 		props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
+		String topicName = System.getenv("OUTPUT_output");
+
 		Producer<String, String> producer = new KafkaProducer<>(props);
 		int i = 0;
 		while (true) {
-			producer.send(new ProducerRecord<String, String>("test", Integer.toString(i),
+			producer.send(new ProducerRecord<String, String>(topicName, Integer.toString(i),
 					Integer.toString(i)));
 			i++;
 		}
