@@ -21,8 +21,11 @@ public class ProducerMain {
 		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
 		String topicName = System.getenv("OUTPUT_output");
+		System.out.println("Using topic " + topicName);
 
+		System.out.println("Creating producer...");
 		Producer<String, String> producer = new KafkaProducer<>(props);
+		System.out.println("Created producer. Pushing message stream");
 		int i = 0;
 		while (true) {
 			producer.send(new ProducerRecord<String, String>(topicName, Integer.toString(i),
